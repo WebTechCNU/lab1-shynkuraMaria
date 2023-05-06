@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 1</title>
+    <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#reverse">Вивести число у зворотному порядку цифр</a></li>
+                <li><a href="#control">Контроль введення даних</a></li>
+                <li><a href="#spaces">У введеному тексті забрати зайві пробіли</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <section id="reverse">
+
+        <h2>Вивести число у зворотному порядку цифр</h2>
+        <input type="number" id="number" placeholder="Введіть число">
+        <button onclick="reverseNumber()">Перевернути</button>
+        <p id="result"></p>
+        <script>
+            function reverseNumber() {
+                let inputNumber = document.getElementById("number").value;
+                let reversedNumber = inputNumber.toString().split("").reverse().join("");
+                document.getElementById("result").innerHTML = "Зворотній порядок: " + reversedNumber;
+            }
+        </script>
+
+    </section>
+
+    <section id="control">
+        <h2>Контроль введення даних</h2>
+        <h3>Поступово вводиться набір чисел. Якщо число повторюється,
+            то вивести повідомлення, що таке число вже введено.</h3>
+
+        <input type="text" id="numbers-input" placeholder="Введіть поступово числа">
+
+        <button onclick="checkDuplicate()">Перевірити</button>
+
+        <p id="result_2"></p>
+        <script>
+            let numbers = [];
+
+            function checkDuplicate() {
+                let number = parseFloat(document.getElementById("numbers-input").value);
+
+                if (isNaN(number)) {
+                    document.getElementById("result_2").innerHTML = "Помилка: \"" + document.getElementById("numbers-input").value + "\" не є числом.";
+                    return;
+                }
+
+                if (numbers.includes(number)) {
+                    document.getElementById("result_2").innerHTML = number + " вже додано.";
+                } else {
+                    numbers.push(number);
+                    document.getElementById("result_2").innerHTML = number + " нове число.";
+                }
+            }
+        </script>
+    </section>
+
+    <section id="spaces">
+        <h2>У введеному тексті забрати зайві пробіли</h2>
+        <input type="text" id="text-input" placeholder="Введіть текст">
+        <button onclick="removeSpaces()">Забрати зайві пробіли</button>
+        <p id="result_3"></p>
+        <script>
+            function removeSpaces() {
+                let inputText = document.getElementById("text-input").value;
+                let outputText = inputText.replace(/\s/g, '');
+                alert("Текст без пробілів:\n" + outputText);
+            }
+        </script>
+
+    </section>
+
+
+</body>
+
+</html>
